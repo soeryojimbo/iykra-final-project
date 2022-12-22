@@ -1,0 +1,9 @@
+version: 2
+
+sources :
+  - name: staging
+    database: iykra-fahmi
+    schema: onlinepayment_stg
+  
+    tables: 
+      - name: online_payment_view
