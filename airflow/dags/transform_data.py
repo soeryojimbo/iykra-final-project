@@ -17,13 +17,13 @@ default_args = {
 }
 
 with DAG(
-    dag_id = 'transform_dbt',
+    dag_id = 'transform_ddata',
     default_args = default_args,
-    description = 'Test dbt',
-    schedule_interval="@once",
-    start_date=datetime(2022,3,20),
-    catchup=True,
-    tags=['dbt']
+    description = 'Transform data on bigquery',
+    schedule_interval="30 0 * * *",
+    start_date=datetime(2022,12,23),
+    catchup=False,
+    tags=['dbt', 'transform']
 
 ) as dag:
 

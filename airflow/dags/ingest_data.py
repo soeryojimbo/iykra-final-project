@@ -8,7 +8,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.google.cloud.operators.bigquery import (BigQueryCreateExternalTableOperator,
                                                                BigQueryCreateEmptyDatasetOperator)
 
-
+from datetime import datetime
 from google.cloud import storage
 import pyarrow.csv as pv
 import pyarrow.parquet as pq
@@ -59,13 +59,13 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 default_args = {
     "owner": "airflow",
-    "start_date": days_ago(1),
     "depends_on_past": False,
     "retries": 1,
 }
 
 with DAG(
-    dag_id="data_ingestion_gcs_dag",
+    dag_id="ingest_data",
+    start_date= datetime(2022,12,23),
     schedule_interval="@daily",
     default_args=default_args,
     catchup=False,

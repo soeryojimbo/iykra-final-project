@@ -1,0 +1,56 @@
+
+version: 2
+
+models:
+  - name: fact_fraud
+    description: "Fact table"
+    columns: 
+      - name: transaction_id
+        description: "Unique id for each transaction"
+        tests: 
+          - unique:
+              severity: error
+          - not_null:
+              severity: error
+      - name: date
+        description: "Timestamp of transaction"
+      - name: payment_type
+        desctiption: "Type of payment used for transaction"
+        tests: 
+          - accepted_values:
+              values: ['PAYMENT', 'CASH_OUT', 'CASH_IN', 'TRANSFER', 'DEBIT']
+              severity: warn
+      - name: idSender
+        description: "Identifier of sender for a transaction"
+        tests: 
+          - not_null:
+              severity: warn
+      - name: CountTrxAsSender
+        description: "How much transacation was done as sender"
+      - name: AmountOfTrx
+        description: "Amount of a transaction"
+      - name: PrevBalanceSender
+        description: "Previous sender's balance before transaction"
+      - name: NewBalanceSender
+        description: "Sender's balance after transaction"
+      - name: SendBalanceDiff
+        description: "Differences on sender balances before and after transaction"
+      - name: IdReceiver
+        description: "Identifier of receiver for a transaction"
+        tests:
+          - not_null:
+              severity: warn
+      - name: CountTrxAsRcv
+        description: "How much transacation was done as receiver"
+      - name: PrevBalanceReceiver
+        description: "Previous receiver's balance before transaction"
+      - name: NewBalanceReceiver
+        description: "Receiver's balance after transaction"
+      - name: RcvBalanceDiff
+        description: "Differences on receiver balances before and after transaction"
+      - name: Fraud
+        description: "Fraudulent of a transaction"
+        tests:
+          - accepted_values:
+              values: [0, 1]
+              severity: warn

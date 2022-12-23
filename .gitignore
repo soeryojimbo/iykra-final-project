@@ -1,0 +1,15 @@
+.profile
+.wget-hsts
+snap/
+.vscode-server
+.ssh
+.google
+.gnupg
+.docker
+.dbt
+.config
+.cache
+.bash_history
+.bash_logout
+.bashrc
+.gitconfig
